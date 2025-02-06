@@ -1,0 +1,1 @@
+It was a data analysis process where I researched road accidents in Brazil, analyzed them, and visualized the results with graphs. The database:https://www.kaggle.com/datasets/mlippo/car-accidents-in-brazil-2017-2023
