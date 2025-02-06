@@ -1,0 +1,54 @@
+imports:
+  - pandas as pd
+  - numpy as np
+  - sklearn.cluster.KMeans
+  - sklearn.preprocessing.StandardScaler
+  - matplotlib.pyplot as plt
+  - kneed.KneeLocator
+  - sklearn.model_selection.train_test_split
+  - sklearn.linear_model.LinearRegression
+  - sklearn.metrics.mean_squared_error
+  - sklearn.metrics.r2_score
+  - sklearn.metrics.mean_absolute_error
+  - sklearn.tree.DecisionTreeRegressor
+  - seaborn as sns
+
+settings:
+  matplotlib_style: seaborn-v0_8
+
+data:
+  file_path: accidents_2017_to_2023_english.csv
+  read_options:
+    low_memory: false
+
+preprocessing:
+  drop_na: true
+  convert_km:
+    replace: {',': '.'}
+    type: float
+  convert_hour:
+    format: '%H:%M:%S'
+  convert_date:
+    column: inverse_data
+    errors: coerce
+
+models:
+  kmeans:
+    features: ['road_id', 'km', 'latitude', 'longitude', 'total_injured', 'hour', 'people']
+    elbow_method: true
+    optimal_k: calculated
+  regression:
+    features: ['km', 'latitude', 'longitude', 'hour', 'people', 'deaths', 'road_id']
+    target: total_injured
+  decision_tree:
+    random_state: 42
+
+visualizations:
+  correlation_matrix: true
+  cause_of_accident_distribution: true
+  animals_on_road_analysis: true
+  weather_condition_analysis: true
+  time_based_analysis:
+    - hourly
+    - daily
+    - monthly 
